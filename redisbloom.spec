@@ -39,6 +39,12 @@ store all the elements of the stream.
 %prep
 %autosetup -p1
 
+: Configuration file
+cat << EOF | tee %{cfgname}
+# %{name}
+loadmodule %{redis_modules_dir}/%{libname}
+EOF
+
 mv deps/RedisModulesSDK/LICENSE LICENSE-RedisModulesSDK
 mv deps/readies/LICENSE         LICENSE-readies
 mv deps/t-digest-c/LICENSE.md   LICENSE-t-digest-c
@@ -61,5 +67,6 @@ install -Dpm640 %{cfgname}                     %{buildroot}%{redis_modules_cfg}/
 %{redis_modules_dir}/%{libname}
 
 
+%changelog
 * Wed Feb 23 2026 Daria Guy <daria.guy@redis.com> - 8.6.0-1
 - Initial package for RedisBloom 8.6.0
