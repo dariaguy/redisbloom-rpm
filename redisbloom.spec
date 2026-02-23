@@ -1,4 +1,4 @@
-Name:              redis-bloom
+Name:              redisbloom
 Version:           8.6.0
 Release:           1%{?dist}
 Summary:           Probabilistic data structures
