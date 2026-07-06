@@ -41,7 +41,7 @@ store all the elements of the stream.
 
 : Configuration file
 cat << EOF | tee %{cfgname}
-# %{name}
+# RedisBloom module configuration
 loadmodule %{redis_modules_dir}/%{libname}
 EOF
 
@@ -56,17 +56,17 @@ make build
 
 %install
 install -Dpm755 bin/linux-*-release/%{libname} %{buildroot}%{redis_modules_dir}/%{libname}
-install -Dpm640 %{cfgname}                     %{buildroot}%{redis_modules_cfg}/%{cfgname}
+install -Dpm644 %{cfgname}                     %{buildroot}%{redis_modules_cfg}/%{cfgname}
 
 
 %files
 %license LICENSE.*
 %license licenses/AGPLv3.txt
 %doc *.md
-%attr(0640, redis, root) %config(noreplace) %{redis_modules_cfg}/%{cfgname}
+%config(noreplace) %{redis_modules_cfg}/%{cfgname}
 %{redis_modules_dir}/%{libname}
 
 
 %changelog
-* Wed Feb 23 2026 Daria Guy <daria.guy@redis.com> - 8.6.0-1
+* Mon Feb 23 2026 Daria Guy <daria.guy@redis.com> - 8.6.0-1
 - Initial package for RedisBloom 8.6.0
